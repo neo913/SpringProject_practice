@@ -6,7 +6,7 @@
 	<c:choose>
 		<c:when test="${not empty sessionScope.currentAccountInfo}">
 			<div class="row">
-			<form name="newArticleForm" method="post" action="createArticle">
+			<form name="articleEditForm" method="post" action="createArticle">
 				
 				<div class="form-group">
 					<label class="col-sm-1 control-label" for="title">Title: </label>

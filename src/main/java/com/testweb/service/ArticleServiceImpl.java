@@ -30,4 +30,12 @@ public class ArticleServiceImpl implements ArticleService {
 		articleRepositoryJpa.saveAndFlush(newArticle);
 	}
 
+	public void deleteArticleById(Long id) {
+		articleRepositoryJpa.delete(id);
+	}
+
+	public void updateArticle(Article article) {
+		articleRepositoryJpa.saveAndFlush(article);
+	}
+
 }

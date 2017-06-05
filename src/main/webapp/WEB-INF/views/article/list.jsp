@@ -1,17 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
 
-<!-- 
-<style type="text/css">
-	.artTable{	text-align: center;	}
-	.tnc{	width: 70%;	}
-	th{text-align: center;}
-	td{text-align: center;}
-	.artTitle{text-align: left;}
-	.odd{background-color: #87ceeb;}
-</style> -->
 
 <h2>Social Board</h2>
 <hr />
@@ -31,7 +24,7 @@
 				<td class="artTitle"><a href="/Article/Detail/${article.id}">${article.title}</a></td>
 				<td class="odd">${article.writer.name}</td>
 				<td>${article.writeTime }</td>
-				<%-- <td class="odd">${article.commentCount}</td> --%>
+				<%-- <td class="odd">${fn:length(article.comments}</td> --%>
 			</tr>
 		
 	</c:forEach>

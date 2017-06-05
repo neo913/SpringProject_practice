@@ -42,33 +42,16 @@ public class ArticleController {
 
 	@RequestMapping(value="/Article/createArticle", method=RequestMethod.POST)
 	public ModelAndView createArticle(Article article, HttpSession session, HttpServletRequest request){
-		System.out.println("createArticle is called");
 		
 		ModelAndView mav = new ModelAndView();
 		
 		/*String viewName = "redirect:/Article/Detail/" + article.getId();*/
 		mav.setViewName("redirect:/Article");
 		
-		//article.setWriter(account);
-		
 		Account writer = (Account) session.getAttribute("currentAccountInfo");
-		System.out.println("if I get the \"currentAccountInfo\"...");
 		article.setWriter(writer);
-		System.out.println(writer.getName() + "is the writer");
 		
-		
-		if(article.getWriteTime() == null){
-			article.setWriteTime(new Date());
-			System.out.println("data is set" + article.getWriteTime());
-		}
-		
-		System.out.println("ID: "+article.getId());
-		System.out.println("Title: "+article.getTitle());
-		System.out.println("content: "+article.getContent());
-		System.out.println("Writer: "+article.getWriter().getName());
-		System.out.println("WriteTime: "+article.getWriteTime());
-		
-		if(article.getTitle() != null && article.getComments() != null &&
+		if(article.getTitle().length() > 0 && article.getContent().length() > 0 && 
 				article.getWriter().getName() != null){
 			articleService.createArticle(article.getTitle(), article.getContent(), article.getWriter());
 		}else{
@@ -92,23 +75,39 @@ public class ArticleController {
 		return mav;
 	}
 
-	/*@RequestMapping(value="/Article/Detail/{id}", method=RequestMethod.GET)
-	public String articleDetailGet(@PathVariable("id") Long id, Model model){
+	@RequestMapping(value="/Article/Update/{id}", method=RequestMethod.GET)
+	public ModelAndView articleUpdateGet(@PathVariable("id") Long id, Article article, HttpSession session, HttpServletRequest request){
+		
+		ModelAndView mav = new ModelAndView("article/update");
 		
 		Article thisArticle = articleService.findArticleById(id);
 		
-		model.addAttribute("thisArticle", thisArticle);
-		return "article/detail";
-	}*/
-	
-	@RequestMapping("/Article/update")
-	public String articleUpdate(){
-		return "";
+		mav.addObject("thisArticle", thisArticle);
+		
+		return mav;
 	}
 	
-	@RequestMapping("/Article/Delete")
-	public String articleDelete(){
-		return "";
+	@RequestMapping(value="/Article/Update/{id}", method=RequestMethod.POST)
+	public ModelAndView articleUpdatePost(@PathVariable("id") Long id, Article article, HttpSession session, HttpServletRequest request){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/Article/Detail/"+id);;
+		
+		Article updatedArticle = new Article();
+		
+		updatedArticle.setId(article.getId());
+		updatedArticle.setTitle(article.getTitle());
+		updatedArticle.setContent(article.getContent());
+		updatedArticle.setWriter(article.getWriter());
+		updatedArticle.setWriteTime(new Date());
+		updatedArticle.setComments(article.getComments());
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/Article/Delete/{id}", method=RequestMethod.GET)
+	public String articleDelete(@PathVariable("id") Long id){
+		articleService.deleteArticleById(id);
+		return "redirect:/Article/";
 	}
 	
 }

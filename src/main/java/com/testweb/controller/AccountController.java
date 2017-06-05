@@ -29,7 +29,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value="/Account/signInProcess", method = RequestMethod.POST)
-	public ModelAndView signInProcess(Model model, Account account, HttpSession session, HttpServletRequest request){
+	public ModelAndView signInProcess(Account account, HttpSession session, HttpServletRequest request){
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/");
 		Account currentAccount = accountService.findAccountByEmailAndPassword(account.getEmail(), account.getPassword());
@@ -59,6 +59,7 @@ public class AccountController {
 		
 		if(accountService.findAccountByEmail(account.getEmail()) == null){
 			accountService.createAccount(account.getEmail(), account.getPassword(), account.getName());
+			signInProcess(account, session, request);
 		}else{
 			System.out.println("The account is already exist");
 		}

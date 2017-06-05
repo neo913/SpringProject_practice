@@ -3,19 +3,11 @@
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
 
-<!-- <style type="text/css">
-	.artTable{	text-align: center;	}
-	.tnc{	width: 70%;	}
-	th{text-align: center;}
-	td{text-align: center;}
-	.artTitle{text-align: left;}
-	.odd{background-color: #87ceeb;}
-</style> -->
-
 <h2>Social Board</h2>
 <hr />
 <table class="table artTable">
 	<c:forEach items="${thisArticle}" var="article">
+	<c:set var="articleId" value="${article.id}"/>
 		<tr style="text-align:center;">
 			<th class="odd">ID</th>
 			<th class="tnc">Title</th>
@@ -39,30 +31,18 @@
 				<td colspan="4">${comment.content}
 			</tr>
 		</c:forEach>
+		
 	</c:forEach>
 </table>
 
-<%-- 
-<c:choose>
-	
-	<c:when test="${not empty sessionScope.currentAccountInfo }">
-		<div class="row">
-			<c:forEach items="${thisArticle}" var="article">
-		
-			</c:forEach>
+ 		<div class="form-group">
+			<div class="col-md-1">
+				<a href="" onclick="history.back()"><button class="btn btn-default">List</button></a>
+			</div>
+			<div class="col-md-offset-10 col-md-1">
+				<a href="/Article/Delete/${articleId}"><button class="btn btn-default">Delete</button></a>
+			</div>
 		</div>
-	</c:when>
-	
-	<c:otherwise>
-	
-	</c:otherwise>
-</c:choose>
- --%>
- 
- <div class="form-group">
-	<div>
-		<a href="" onclick="history.back()"><button class="btn btn-default">List</button></a> 
-	</div>
-</div>
+		
 	</tiles:putAttribute>
 </tiles:insertDefinition>

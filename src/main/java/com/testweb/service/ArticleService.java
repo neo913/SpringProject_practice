@@ -12,4 +12,8 @@ public interface ArticleService {
 	List<Article> findAllArticles();
 	
 	void createArticle(String title, String content, Account writer);
+	
+	void updateArticle(Article article);
+	
+	void deleteArticleById(Long id);
 }
