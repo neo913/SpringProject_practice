@@ -1,0 +1,67 @@
+/*
+2-tone color: #63471f, #fccc4e
+*/
+body{
+	max-width: 990px;
+	margin: auto !important;
+}
+
+/* Custom Bootstrap */
+.navbar{
+	border-bottom: 1px solid #63471f !important;
+}
+#myCarousel{
+	margin-top: 0%;
+}
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+	max-width: 600px;
+	max-height: 400px;
+  	width: 60%;
+   	margin: auto;
+}
+.carousel-caption h3{
+	text-shadow: 1px 2px black;
+}
+.table{
+	border-color: #63471f;
+}
+			/* End of Custom Bootstrap */
+
+			/* Style */
+.blank{
+	height: 56px;
+}
+.blank-20{
+	min-height: 20px;
+}
+
+#main{
+	/* margin-top:10px; */
+}
+.logo-md{
+	width: 300px;
+	margin: auto;
+}
+.profile_picture{
+	width: 30px;
+	max-height: 30px;
+}
+.artTable{
+	text-align: center;
+}
+.tnc{
+	width: 70%;
+}
+th, td{
+	text-align: center;
+}
+.artTitle{
+	text-align: left;
+}
+.odd{
+	background-color: #87ceeb;
+}
+table{
+	border-radius: 3px;
+}
