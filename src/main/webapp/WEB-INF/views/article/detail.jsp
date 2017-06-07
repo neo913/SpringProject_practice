@@ -10,7 +10,7 @@
 <div id="main" class="container">
 <table class="table artTable">
 	<c:forEach items="${thisArticle}" var="article">
-	<c:set var="articleId" value="${article.id}"/>
+	<c:set var="thisArticle" value="${article}"/>
 		<tr style="text-align:center;">
 			<th class="odd col-md-1">ID</th>
 			<th class="col-md-8">Title</th>
@@ -29,11 +29,11 @@
 		<tr>
 			<td colspan="4" class="text-left odd"><b>Comments:</b></td>
 		</tr>
-		<c:forEach items="${article.comments}" var="comment">
+		<c:forEach items="${comments}" var="comment">
 			<tr>
 				<td colspan="4">
 					<div class="form-group col-sm-1">
-						${comment.writer.name}:
+						<b>${comment.writer.name}:</b>
 					</div>
 					<div class="col-sm-9 text-left">
 						${comment.content}
@@ -77,12 +77,14 @@
 			<div class="col-md-1">
 				<a href="" onclick="history.back()"><button class="btn btn-default">List</button></a>
 			</div>
-			<div class="col-md-offset-9 col-md-1">
-				<a href="/Article/Edit/${articleId}"><button class="btn btn-default">Edit</button></a>
-			</div>
-			<div class="col-md-1">
-				<a href="/Article/Delete/${articleId}"><button class="btn btn-default">Delete</button></a>
-			</div>
+			<c:if test="${thisArticle.writer.id == sessionScope.currentAccountInfo.id}">
+				<div class="col-md-offset-9 col-md-1">
+					<a href="/Article/Update/${thisArticle.id}"><button class="btn btn-default">Edit</button></a>
+				</div>
+				<div class="col-md-1">
+					<a href="/Article/Delete/${thisArticle.id}"><button class="btn btn-default">Delete</button></a>
+				</div>
+			</c:if>
 		</div>
 </div>
 	</tiles:putAttribute>		

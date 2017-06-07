@@ -34,6 +34,12 @@ public class Account {
 		this.password = password;
 		this.name = name;
 	}
+	
+	public Account(Account cpyAccount){
+		this.email = cpyAccount.getEmail();
+		this.password = cpyAccount.getPassword();
+		this.name = cpyAccount.getName();
+	}
 
 	public String getEmail() {
 		return email;

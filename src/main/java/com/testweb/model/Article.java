@@ -29,15 +29,12 @@ public class Article {
 	@Column(length=3000)
 	private String content;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Account writer;
 
 	private Date writeTime = new Date();
 	
 	@OneToMany(mappedBy="article", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	//@OneToMany(mappedBy="articles", cascade=CascadeType.ALL, orphanRemoval=true)
-	//@OneToMany(mappedBy="article", cascade=CascadeType.ALL)
-	//@JoinColumn(name="article_id")
 	private List<Comment> comments = new ArrayList<Comment>();
 
 	public Article(){

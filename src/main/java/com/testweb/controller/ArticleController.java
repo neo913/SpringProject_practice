@@ -29,116 +29,124 @@ import com.testweb.service.CommentService;
 public class ArticleController {
 
 	@Autowired
-	private AccountService accountService;
-	
-	@Autowired
 	private ArticleService articleService;
-	
+
 	@Autowired
 	private CommentService commentService;
-	
+
 	@RequestMapping("/Article")
-	public String articleList(Model model){
+	public String articleList(Model model) {
 		List<Article> articles = articleService.findAllArticles();
 		model.addAttribute("articles", articles);
+
 		return "article/list";
 	}
-	
+
 	@RequestMapping("/Article/Create")
-	public String articleCreate(){
+	public String articleCreate() {
 		return "article/create";
 	}
 
-	@RequestMapping(value="/Article/createArticle", method=RequestMethod.POST)
-	public ModelAndView createArticle(Article article, HttpSession session, HttpServletRequest request){
-		
+	@RequestMapping(value = "/Article/createArticle", method = RequestMethod.POST)
+	public ModelAndView createArticle(Article article, HttpSession session, HttpServletRequest request) {
+
 		ModelAndView mav = new ModelAndView();
-		
-		/*String viewName = "redirect:/Article/Detail/" + article.getId();*/
+
+		/* String viewName = "redirect:/Article/Detail/" + article.getId(); */
 		mav.setViewName("redirect:/Article");
-		
+
 		Account writer = (Account) session.getAttribute("currentAccountInfo");
 		article.setWriter(writer);
-		
-		if(article.getTitle().length() > 0 && article.getContent().length() > 0 && 
-				article.getWriter().getName() != null){
+
+		if (article.getTitle().length() > 0 && article.getContent().length() > 0
+				&& article.getWriter().getName() != null) {
 			articleService.createArticle(article.getTitle(), article.getContent(), article.getWriter());
-		}else{
+		} else {
 			System.out.println("failed to create an article");
 		}
 		return mav;
 	}
-	
-	@RequestMapping(value="/Article/Detail/{id}", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/Article/Detail/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public ModelAndView articleDetailGet(@PathVariable("id") Long id, Model model){
-		
-		List<Article> thisArticle = new ArrayList<Article>();
-		
-		thisArticle.add(articleService.findArticleById(id));
-		
+	public ModelAndView articleDetailGet(@PathVariable("id") Long id, Model model) {
+
 		ModelAndView mav = new ModelAndView("article/detail");
-		
+
+		List<Article> thisArticle = new ArrayList<Article>();
+
+		thisArticle.add(articleService.findArticleById(id));
+
+		List<Comment> commentsOfThisArticle = commentService.findAllCommentsByArticleId(id);
+
 		mav.addObject("thisArticle", thisArticle);
-		
+
+		mav.addObject("comments", commentsOfThisArticle);
+
 		return mav;
 	}
 
-	@RequestMapping(value="/Article/Update/{id}", method=RequestMethod.GET)
-	public ModelAndView articleUpdateGet(@PathVariable("id") Long id, Article article, HttpSession session, HttpServletRequest request){
-		
+	@RequestMapping(value = "/Article/Update/{id}", method = RequestMethod.GET)
+	public ModelAndView articleUpdateGet(@PathVariable("id") Long id, Article article, HttpSession session,
+			HttpServletRequest request) {
+
 		ModelAndView mav = new ModelAndView("article/update");
-		
+
 		Article thisArticle = articleService.findArticleById(id);
-		
-		mav.addObject("thisArticle", thisArticle);
-		
+
+		if ((Account) session.getAttribute("currentAccountInfo") == thisArticle.getWriter()) {
+			mav.addObject("thisArticle", thisArticle);
+		} else {
+			mav.setViewName("redirect:/Article/Detail/"+id);
+		}
+
 		return mav;
 	}
-	
-	@RequestMapping(value="/Article/Update/{id}", method=RequestMethod.POST)
-	public ModelAndView articleUpdatePost(@PathVariable("id") Long id, Article article, HttpSession session, HttpServletRequest request){
+
+	@RequestMapping(value = "/Article/Update/{id}/editArticle", method = RequestMethod.POST)
+	public ModelAndView articleUpdatePost(@PathVariable("id") Long id, Article article, HttpSession session,
+			HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/Article/Detail/"+id);
-		
+		mav.setViewName("redirect:/Article/Detail/" + id);
+
 		Article updatedArticle = new Article();
-		
 		updatedArticle.setId(article.getId());
 		updatedArticle.setTitle(article.getTitle());
 		updatedArticle.setContent(article.getContent());
-		updatedArticle.setWriter(article.getWriter());
-		updatedArticle.setWriteTime(new Date());
+		updatedArticle.setWriter((Account) session.getAttribute("currentAccountInfo"));
+		updatedArticle.setWriteTime(article.getWriteTime());
 		updatedArticle.setComments(article.getComments());
-		
+
+		articleService.updateArticle(updatedArticle);
+
 		return mav;
 	}
-	
-	@RequestMapping(value="/Article/Delete/{id}", method=RequestMethod.GET)
-	public String articleDelete(@PathVariable("id") Long id){
+
+	@RequestMapping(value = "/Article/Delete/{id}", method = RequestMethod.GET)
+	public String articleDelete(@PathVariable("id") Long id) {
 		articleService.deleteArticleById(id);
 		return "redirect:/Article/";
 	}
-	
-	@RequestMapping(value="/Article/Detail/{id}/addComment", method=RequestMethod.POST)
-	public ModelAndView addComment(Article article, Comment comment, 
-			HttpSession session, HttpServletRequest request, 
+
+	@RequestMapping(value = "/Article/Detail/{id}/addComment", method = RequestMethod.POST)
+	public ModelAndView addComment(Article article, Comment comment, HttpSession session, HttpServletRequest request,
 			@PathVariable("id") Long id) {
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/Article/Detail/" + id);
-		
+
 		Article thisArticle = articleService.findArticleById(id);
 		Account thisWriter = (Account) session.getAttribute("currentAccountInfo");
 
-		if(thisArticle != null && thisWriter != null && comment.getContent().length() > 0){
+		if (thisArticle != null && thisWriter != null && comment.getContent().length() > 0) {
 			comment.setArticle(thisArticle);
 			comment.setWriter(thisWriter);
 			commentService.addComment(thisArticle, thisWriter, comment.getContent());
-		}else{
+		} else {
 			System.out.println("failed to add comment");
 		}
-		
+
 		return mav;
 	}
-	
+
 }

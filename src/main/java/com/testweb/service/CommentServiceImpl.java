@@ -1,5 +1,7 @@
 package com.testweb.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,15 @@ public class CommentServiceImpl implements CommentService{
 	@Autowired
 	private CommentRepositoryJpa commentRepositoryJpa;
 
+	public List<Comment> findAllCommentsByArticleId(Long id) {
+		return commentRepositoryJpa.findAllByArticleIdDesc(id);
+	}
+	
 	public void addComment(Article article, Account writer, String content) {
 		Comment newComment = new Comment(article, writer, content);
 		commentRepositoryJpa.saveAndFlush(newComment);
 	}
+
+
 
 }

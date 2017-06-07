@@ -6,24 +6,24 @@
 	<c:choose>
 		<c:when test="${not empty sessionScope.currentAccountInfo}">
 			<div class="row">
-			<form name="articleEditForm" method="post" action="createArticle">
-				
+			<c:set var="article" value="${thisArticle}" />
+			<form name="articleEditForm" method="post" action="${article.id}/editArticle">
 				<div class="form-group">
 					<label class="col-sm-1 control-label" for="title">Title: </label>
 					<div class="col-sm-6">
-						<input class="form-control" name="title" autofocus /><br />
+						<input class="form-control" name="title" autofocus value="${article.title}" /><br />
 					</div>
 				</div>
 				<div class="col-sm-12">
-					Content:
-					<textarea class="form-control" rows="10" name="content"></textarea>
+					<b>Content:</b>
+					<textarea class="form-control" rows="10" name="content">${article.content}</textarea>
 				</div>
 				
 				<div class="clearfix"></div>
 				<div class="blank-20"></div>
 				<div class="form-group">
 					<div class="col-md-1">
-						<input type="submit" value="Post" class="btn btn-primary"/> 
+						<input type="submit" value="Edit" class="btn btn-success"/> 
 					</div>
 					<div class="col-md-offset-10 col-md-1">
 						<a href="" onclick="history.back()"><button class="btn btn-default">List</button></a>

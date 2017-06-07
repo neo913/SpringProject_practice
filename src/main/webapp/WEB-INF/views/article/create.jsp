@@ -15,7 +15,7 @@
 					</div>
 				</div>
 				<div class="col-sm-12">
-					Content:
+					<b>Content:</b>
 					<textarea class="form-control" rows="10" name="content"></textarea>
 				</div>
 				

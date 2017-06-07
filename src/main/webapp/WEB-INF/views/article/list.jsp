@@ -23,7 +23,7 @@
 			<tr>
 				<td class="odd col-md-1">${article.id}</td>
 				<td class="col-md-7 text-left"><a href="/Article/Detail/${article.id}">${article.title}</a></td>
-				<td class="odd"><%-- ${fn:length(article.comments} --%></td>
+				<td class="odd">${fn:length(article.comments)}</td>
 				<td class="col-md-2">${article.writeTime }</td>
 				<td class="odd col-md-1">${article.writer.name}</td>
 			</tr>

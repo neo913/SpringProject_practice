@@ -2,6 +2,7 @@ package com.testweb.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,11 +20,9 @@ public class Comment {
 	private Long id;
 
 	@ManyToOne
-	//@ManyToOne(fetch=FetchType.LAZY)
-	//@JoinColumn(name="article_id")
 	private Article article;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Account writer;
 
 	private String content;
