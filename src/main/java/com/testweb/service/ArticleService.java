@@ -16,4 +16,8 @@ public interface ArticleService {
 	void updateArticle(Article article);
 	
 	void deleteArticleById(Long id);
+	
+	//Comments
+	/*void addComment(Article article, Account writer, String content);*/
+	
 }

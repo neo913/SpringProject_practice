@@ -37,7 +37,7 @@ body{
 }
 
 #main{
-	/* margin-top:10px; */
+	max-width: 990px;
 }
 .logo-md{
 	width: 300px;
@@ -50,18 +50,30 @@ body{
 .artTable{
 	text-align: center;
 }
-.tnc{
-	width: 70%;
-}
 th, td{
 	text-align: center;
 }
 .artTitle{
 	text-align: left;
+	position: relative;
+}
+.artContent{
+	text-align: left;
+	height: 100px;
 }
 .odd{
 	background-color: #87ceeb;
 }
-table{
-	border-radius: 3px;
+.error {
+	color: #ff0000;
+}
+.errorBlock {
+	color: #000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding: 8px;
+	margin: 16px;
+}
+.text-left{
+	text-align: left;
 }

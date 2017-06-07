@@ -19,14 +19,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.testweb.model.Account;
 import com.testweb.model.Article;
+import com.testweb.model.Comment;
+import com.testweb.service.AccountService;
 import com.testweb.service.ArticleService;
+import com.testweb.service.CommentService;
 
 @Controller
 @SessionAttributes("Article")
 public class ArticleController {
 
 	@Autowired
+	private AccountService accountService;
+	
+	@Autowired
 	private ArticleService articleService;
+	
+	@Autowired
+	private CommentService commentService;
 	
 	@RequestMapping("/Article")
 	public String articleList(Model model){
@@ -62,7 +71,7 @@ public class ArticleController {
 	
 	@RequestMapping(value="/Article/Detail/{id}", method=RequestMethod.GET)
 	@ResponseBody
-	public ModelAndView articleDetailGet(@PathVariable("id") Long id){
+	public ModelAndView articleDetailGet(@PathVariable("id") Long id, Model model){
 		
 		List<Article> thisArticle = new ArrayList<Article>();
 		
@@ -90,7 +99,7 @@ public class ArticleController {
 	@RequestMapping(value="/Article/Update/{id}", method=RequestMethod.POST)
 	public ModelAndView articleUpdatePost(@PathVariable("id") Long id, Article article, HttpSession session, HttpServletRequest request){
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/Article/Detail/"+id);;
+		mav.setViewName("redirect:/Article/Detail/"+id);
 		
 		Article updatedArticle = new Article();
 		
@@ -108,6 +117,28 @@ public class ArticleController {
 	public String articleDelete(@PathVariable("id") Long id){
 		articleService.deleteArticleById(id);
 		return "redirect:/Article/";
+	}
+	
+	@RequestMapping(value="/Article/Detail/{id}/addComment", method=RequestMethod.POST)
+	public ModelAndView addComment(Article article, Comment comment, 
+			HttpSession session, HttpServletRequest request, 
+			@PathVariable("id") Long id) {
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/Article/Detail/" + id);
+		
+		Article thisArticle = articleService.findArticleById(id);
+		Account thisWriter = (Account) session.getAttribute("currentAccountInfo");
+
+		if(thisArticle != null && thisWriter != null && comment.getContent().length() > 0){
+			comment.setArticle(thisArticle);
+			comment.setWriter(thisWriter);
+			commentService.addComment(thisArticle, thisWriter, comment.getContent());
+		}else{
+			System.out.println("failed to add comment");
+		}
+		
+		return mav;
 	}
 	
 }

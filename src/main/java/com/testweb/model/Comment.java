@@ -29,6 +29,19 @@ public class Comment {
 	private String content;
 
 	private Date writeTime = new Date();
+	
+	public Comment(){
+		this.article = new Article();
+		this.writer = new Account();
+		this.content = "";
+		this.writeTime = new Date();
+	}
+	public Comment(Article article, Account writer, String content){
+		this.article = article;
+		this.writer = writer;
+		this.content = content;
+		this.writeTime = new Date();
+	}
 
 	public Article getArticle() {
 		return article;
