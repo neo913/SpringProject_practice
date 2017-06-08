@@ -9,6 +9,10 @@ Article -- done
 
 Comment -- done
 
+Board working...
+
+fixed some features
+
 Now need to fix some details (like REGEX and adding some features)
 
 Also I will fix the Account setting to add roles
