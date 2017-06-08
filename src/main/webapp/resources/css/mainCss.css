@@ -80,5 +80,8 @@ th, td{
 	text-align: left;
 }
 .dateFont{
-	font-size: 12px;
+	font-size: 11px;
+}
+.dateFont_com{
+	font-size: 10px;
 }

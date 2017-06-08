@@ -47,4 +47,3 @@
 
 	</tiles:putAttribute>
 </tiles:insertDefinition>
-

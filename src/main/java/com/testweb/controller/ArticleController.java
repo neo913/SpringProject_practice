@@ -25,7 +25,7 @@ import com.testweb.service.ArticleService;
 import com.testweb.service.CommentService;
 
 @Controller
-@SessionAttributes("Article")
+@SessionAttributes("Account, Article")
 public class ArticleController {
 
 	@Autowired

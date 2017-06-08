@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -52,8 +55,8 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value="/Account/signUpProcess", method=RequestMethod.POST)
-	public ModelAndView signUpProcess(Account account, HttpSession session, HttpServletRequest request){
-		
+	public ModelAndView signUpProcess(@Valid Account account, HttpSession session, HttpServletRequest request){
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/");
 		
@@ -61,6 +64,9 @@ public class AccountController {
 			accountService.createAccount(account.getEmail(), account.getPassword(), account.getName());
 			signInProcess(account, session, request);
 		}else{
+			mav.setViewName("redirect:/Account/SignUp");
+			String error = "error";
+			mav.addObject(error);
 			System.out.println("The account is already exist");
 		}
 		

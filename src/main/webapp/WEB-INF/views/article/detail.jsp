@@ -22,7 +22,7 @@
 			<td class="odd col-md-1">${article.id}</td>
 			<td class="artTitle col-md-8">${article.title}</td>
 			<td class="odd col-md-1">${article.writer.name}</td>
-			<td class="col-md-2">
+			<td class="col-md-2 dateFont">
 				<fmt:formatDate type = "both" dateStyle = "medium" timeStyle = "medium" value = "${article.writeTime}" />
 			</td>
 		</tr>
@@ -41,7 +41,7 @@
 					<div class="col-sm-9 text-left">
 						${comment.content}
 					</div>
-					<div class="form-group col-sm-2 dateFont">
+					<div class="form-group col-sm-2 dateFont_com">
 						<fmt:formatDate type = "both" dateStyle = "medium" timeStyle = "medium" value = "${comment.writeTime}" />
 					</div>
 				</td>

@@ -1,5 +1,4 @@
 # SpringProject_practice
-in test
 
 This is a practice project
 
@@ -11,8 +10,14 @@ Comment -- done
 
 Board working...
 
-fixed some features
+#To do list
 
-Now need to fix some details (like REGEX and adding some features)
+Pageable board
 
-Also I will fix the Account setting to add roles
+Account role
+
+Admin page and function
+
+Lecture contents
+
+Event contents (Admin)
