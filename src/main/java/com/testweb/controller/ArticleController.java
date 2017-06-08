@@ -52,17 +52,20 @@ public class ArticleController {
 
 		ModelAndView mav = new ModelAndView();
 
-		/* String viewName = "redirect:/Article/Detail/" + article.getId(); */
-		mav.setViewName("redirect:/Article");
-
 		Account writer = (Account) session.getAttribute("currentAccountInfo");
 		article.setWriter(writer);
 
+		
+		
 		if (article.getTitle().length() > 0 && article.getContent().length() > 0
 				&& article.getWriter().getName() != null) {
-			articleService.createArticle(article.getTitle(), article.getContent(), article.getWriter());
+			Article newArticle = article;
+			/*articleService.createArticle(article.getTitle(), article.getContent(), article.getWriter());*/
+			articleService.createArticle(newArticle);
+			mav.setViewName("redirect:/Article/Detail/"+newArticle.getId());
 		} else {
 			System.out.println("failed to create an article");
+			mav.setViewName("/Article/");
 		}
 		return mav;
 	}
@@ -91,10 +94,10 @@ public class ArticleController {
 			HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("article/update");
-
+		
 		Article thisArticle = articleService.findArticleById(id);
-
-		if ((Account) session.getAttribute("currentAccountInfo") == thisArticle.getWriter()) {
+		
+		if ( ((Account)session.getAttribute("currentAccountInfo")).getId() == thisArticle.getWriter().getId() ) {
 			mav.addObject("thisArticle", thisArticle);
 		} else {
 			mav.setViewName("redirect:/Article/Detail/"+id);
@@ -109,6 +112,7 @@ public class ArticleController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/Article/Detail/" + id);
 
+		System.out.println("11");
 		Article updatedArticle = new Article();
 		updatedArticle.setId(article.getId());
 		updatedArticle.setTitle(article.getTitle());
@@ -117,7 +121,9 @@ public class ArticleController {
 		updatedArticle.setWriteTime(article.getWriteTime());
 		updatedArticle.setComments(article.getComments());
 
+		System.out.println("12");
 		articleService.updateArticle(updatedArticle);
+		System.out.println("13");
 
 		return mav;
 	}

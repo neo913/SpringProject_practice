@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
@@ -21,7 +22,9 @@
 			<td class="odd col-md-1">${article.id}</td>
 			<td class="artTitle col-md-8">${article.title}</td>
 			<td class="odd col-md-1">${article.writer.name}</td>
-			<td class="col-md-2">${article.writeTime }</td>
+			<td class="col-md-2">
+				<fmt:formatDate type = "both" dateStyle = "medium" timeStyle = "medium" value = "${article.writeTime}" />
+			</td>
 		</tr>
 		<tr>
 			<td colspan="4" class="artContent">${article.content}</td>
@@ -38,8 +41,8 @@
 					<div class="col-sm-9 text-left">
 						${comment.content}
 					</div>
-					<div class="form-group col-sm-2">
-						${comment.writeTime}
+					<div class="form-group col-sm-2 dateFont">
+						<fmt:formatDate type = "both" dateStyle = "medium" timeStyle = "medium" value = "${comment.writeTime}" />
 					</div>
 				</td>
 			</tr>
@@ -49,7 +52,7 @@
 			<c:when test="${not empty sessionScope.currentAccountInfo}">
 				<tr>
 					<td colspan="4">
-						<form name="addCommentForm" method="post" action="${articleId}/addComment">
+						<form name="addCommentForm" method="post" action="${article.id}/addComment">
 							<div class="form-group">
 								<label class="col-sm-1 control-label" for="content">${currentAccountInfo.name}:</label>
 							</div>
@@ -75,7 +78,7 @@
 
  		<div class="form-group">
 			<div class="col-md-1">
-				<a href="" onclick="history.back()"><button class="btn btn-default">List</button></a>
+				<a href="/Article/""><button class="btn btn-default">List</button></a>
 			</div>
 			<c:if test="${thisArticle.writer.id == sessionScope.currentAccountInfo.id}">
 				<div class="col-md-offset-9 col-md-1">

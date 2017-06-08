@@ -4,6 +4,13 @@
 		<div>
 			<h3>The Best Guitar Community in Toronto!</h3>
 			<img class="logo-md" src="resources/img/logo.jpg">
+			
+			<p>
+				<b>SITE INFO</b><br />
+				developer: nedinsuyun@gmail.com<br />
+				FONT: Spinnaker
+				
+			</p>
 			<p>
 				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean enim.
 				Etiam velit eros, auctor a, pharetra sed, rhoncus eget, neque. Fusce

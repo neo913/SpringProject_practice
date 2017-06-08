@@ -7,6 +7,7 @@
 <head>
 	<title>Social Web</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href='https://fonts.googleapis.com/css?family=Spinnaker' rel='stylesheet'>
 	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />" />
 	<link rel="stylesheet" href="<c:url value="/resources/css/mainCss.css" />" />
 </head>

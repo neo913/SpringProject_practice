@@ -4,6 +4,8 @@
 body{
 	max-width: 990px;
 	margin: auto !important;
+	font-family: 'Spinnaker', sans-serif;
+	font-size: 14px;
 }
 
 /* Custom Bootstrap */
@@ -76,4 +78,7 @@ th, td{
 }
 .text-left{
 	text-align: left;
+}
+.dateFont{
+	font-size: 12px;
 }

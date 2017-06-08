@@ -22,7 +22,7 @@ public class Comment {
 	@ManyToOne
 	private Article article;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.MERGE)
 	private Account writer;
 
 	private String content;

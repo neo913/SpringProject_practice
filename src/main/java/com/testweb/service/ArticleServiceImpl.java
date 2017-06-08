@@ -25,10 +25,10 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleRepositoryJpa.findOne(id);
 	}
 
-	public void createArticle(String title, String content, Account writer) {
+/*	public void createArticle(String title, String content, Account writer) {
 		Article newArticle = new Article(title, content, writer);
 		articleRepositoryJpa.saveAndFlush(newArticle);
-	}
+	}*/
 
 	public void updateArticle(Article article) {
 		Article target = articleRepositoryJpa.findOne(article.getId());
@@ -38,5 +38,9 @@ public class ArticleServiceImpl implements ArticleService {
 	
 	public void deleteArticleById(Long id) {
 		articleRepositoryJpa.delete(id);
+	}
+
+	public void createArticle(Article article) {
+		articleRepositoryJpa.saveAndFlush(article);
 	}
 }

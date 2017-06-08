@@ -26,7 +26,7 @@
 						<input type="submit" value="Edit" class="btn btn-success"/> 
 					</div>
 					<div class="col-md-offset-10 col-md-1">
-						<a href="" onclick="history.back()"><button class="btn btn-default">List</button></a>
+						<a href="/Article/"><button class="btn btn-default">List</button></a>
 					</div>
 				</div>
 			</form>

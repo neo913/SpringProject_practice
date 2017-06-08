@@ -29,7 +29,7 @@ public class Article {
 	@Column(length=3000)
 	private String content;
 
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.MERGE)
 	private Account writer;
 
 	private Date writeTime = new Date();
