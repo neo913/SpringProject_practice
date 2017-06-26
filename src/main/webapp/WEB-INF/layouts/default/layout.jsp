@@ -14,6 +14,9 @@
 <body>
 	<div class="main">
 		<tiles:insertAttribute name="header" />
+		<script type="text/javascript">
+			var message = ${msg};
+		</script>
 		<div>
 			<tiles:insertAttribute name="blank" />
 			<tiles:insertAttribute name="body" />

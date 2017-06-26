@@ -25,6 +25,17 @@ public class CommentServiceImpl implements CommentService{
 		commentRepositoryJpa.saveAndFlush(newComment);
 	}
 
+	public void deleteCommentById(Long id) {
+		commentRepositoryJpa.delete(id);
+	}
 
+	public Comment findCommentById(Long id) {
+		return commentRepositoryJpa.findOne(id);
+	}
 
+	public void updateComment(Comment comment) {
+		Comment target = commentRepositoryJpa.findOne(comment.getId());
+		target = comment;
+		commentRepositoryJpa.saveAndFlush(target);
+	}
 }

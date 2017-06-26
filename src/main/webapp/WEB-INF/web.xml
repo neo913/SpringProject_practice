@@ -35,6 +35,10 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
+	<session-config>
+		<session-timeout>15</session-timeout>
+	</session-config>
+	
 	<servlet-mapping>
 		<servlet-name>testWebServlet</servlet-name>
 		<url-pattern>/</url-pattern>

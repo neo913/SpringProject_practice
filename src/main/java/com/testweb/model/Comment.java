@@ -35,11 +35,19 @@ public class Comment {
 		this.content = "";
 		this.writeTime = new Date();
 	}
+	
 	public Comment(Article article, Account writer, String content){
 		this.article = article;
 		this.writer = writer;
 		this.content = content;
 		this.writeTime = new Date();
+	}
+	
+	public void updateComment(Comment com){
+		this.article = com.getArticle();
+		this.writer = com.getWriter();
+		this.content = com.getContent();
+		this.writeTime = com.getWriteTime();
 	}
 
 	public Article getArticle() {

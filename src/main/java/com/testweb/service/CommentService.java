@@ -10,5 +10,11 @@ public interface CommentService {
 
 	List<Comment> findAllCommentsByArticleId(Long id);
 	
+	Comment findCommentById(Long id);
+	
 	void addComment(Article article, Account writer, String content);
+	
+	void updateComment(Comment comment);
+	
+	void deleteCommentById(Long id);
 }

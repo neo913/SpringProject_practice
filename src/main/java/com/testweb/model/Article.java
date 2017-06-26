@@ -52,6 +52,14 @@ public class Article {
 		this.writeTime = new Date();
 		this.comments = new ArrayList<Comment>();
 	}
+	public void updateArticle(Article art){
+		this.title = art.getTitle();
+		this.content = art.getContent();
+		this.writer = art.getWriter();
+		this.writeTime = art.getWriteTime();
+		this.comments = new ArrayList<Comment>();
+		comments.addAll(art.getComments());
+	}
 	
 	public List<Comment> getComments() {
 		return comments;

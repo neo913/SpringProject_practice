@@ -85,3 +85,11 @@ th, td{
 .dateFont_com{
 	font-size: 10px;
 }
+.ex{
+	color: gray;
+	font-size: 11px;
+}
+.lk:hover, lk:active, lk:focus{
+	cursor: pointer;
+	text-decoration:none;
+}

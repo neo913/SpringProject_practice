@@ -12,10 +12,10 @@
 <div id="main" class="container">
 <table class="table artTable">
 	<tr style="text-align:center;">
-		<th class="col-md-1 odd">Id</th>
+		<th class="col-md-1 odd">ID</th>
 		<th class="col-md-8">Title</th>
-		<th class="col-md-2 odd">Time</th>
-		<th class="col-md-1">Writer</th>
+		<th class="col-md-1 odd">Writer</th>
+		<th class="col-md-2">Time</th>
 	</tr>
 	
 	<c:forEach items="${articles}" var="article">
@@ -23,13 +23,10 @@
 			<tr>
 				<td class="col-md-1 odd">${article.id}</td>
 				<td class="col-md-7 text-left"><a href="/Article/Detail/${article.id}">${article.title} [${fn:length(article.comments)}]</a></td>
-				<%-- <td class="odd">${fn:length(article.comments)}</td> --%>
-				<td class="col-md-2 odd dateFont">
+				<td class="col-md-1 odd">${article.writer.name}</td>
+				<td class="col-md-2 dateFont">
 					<fmt:formatDate type = "both" dateStyle = "medium" timeStyle = "medium" value = "${article.writeTime}" />
 				</td>
-				<td class="col-md-1">${article.writer.name}</td>
-				
-				
 			</tr>
 		
 	</c:forEach>

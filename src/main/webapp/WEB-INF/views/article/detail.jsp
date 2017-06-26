@@ -5,7 +5,7 @@
 
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
-
+	
 <h2>Social Board</h2>
 <hr />
 <div id="main" class="container">
@@ -38,12 +38,30 @@
 					<div class="form-group col-sm-1">
 						<b>${comment.writer.name}:</b>
 					</div>
-					<div class="col-sm-9 text-left">
-						${comment.content}
-					</div>
-					<div class="form-group col-sm-2 dateFont_com">
+					
+					<c:choose>
+						<c:when test="${comment.writer.id == sessionScope.currentAccountInfo.id}">
+							<div class="col-sm-8 text-left">
+								${comment.content}
+							</div>
+							<div class="col-sm-1">
+								<span class="ex">
+									<a href="/Comment/Update/${comment.id}" class="lk">edit</a> 
+									<a href="/Comment/Delete/${comment.id}" class="lk">del</a></span>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="col-sm-9 text-left">
+								${comment.content}
+							</div>
+							
+						</c:otherwise>
+					</c:choose>
+					
+					<div class="col-sm-2 dateFont_com">
 						<fmt:formatDate type = "both" dateStyle = "medium" timeStyle = "medium" value = "${comment.writeTime}" />
 					</div>
+					
 				</td>
 			</tr>
 		</c:forEach>

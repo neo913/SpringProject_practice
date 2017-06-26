@@ -54,8 +54,6 @@ public class ArticleController {
 
 		Account writer = (Account) session.getAttribute("currentAccountInfo");
 		article.setWriter(writer);
-
-		
 		
 		if (article.getTitle().length() > 0 && article.getContent().length() > 0
 				&& article.getWriter().getName() != null) {
@@ -90,8 +88,8 @@ public class ArticleController {
 	}
 
 	@RequestMapping(value = "/Article/Update/{id}", method = RequestMethod.GET)
-	public ModelAndView articleUpdateGet(@PathVariable("id") Long id, Article article, HttpSession session,
-			HttpServletRequest request) {
+	public ModelAndView articleUpdateGet(@PathVariable("id") Long id, Article article, 
+			HttpSession session, HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("article/update");
 		
@@ -107,20 +105,21 @@ public class ArticleController {
 	}
 
 	@RequestMapping(value = "/Article/Update/{id}/editArticle", method = RequestMethod.POST)
-	public ModelAndView articleUpdatePost(@PathVariable("id") Long id, Article article, HttpSession session,
-			HttpServletRequest request) {
+	public ModelAndView articleUpdatePost(@PathVariable("id") Long id, Article article, 
+			HttpSession session, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/Article/Detail/" + id);
 
-		Article updatedArticle = new Article();
-		updatedArticle.setId(article.getId());
+		Article thisArticle = articleService.findArticleById(article.getId());
+		thisArticle.updateArticle(article);
+		/*updatedArticle.setId(article.getId());
 		updatedArticle.setTitle(article.getTitle());
 		updatedArticle.setContent(article.getContent());
 		updatedArticle.setWriter((Account) session.getAttribute("currentAccountInfo"));
 		updatedArticle.setWriteTime(article.getWriteTime());
-		updatedArticle.setComments(article.getComments());
+		updatedArticle.setComments(article.getComments());*/
 
-		articleService.updateArticle(updatedArticle);
+		articleService.updateArticle(thisArticle);
 
 		return mav;
 	}

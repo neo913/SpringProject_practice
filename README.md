@@ -11,6 +11,11 @@ Comment -- done
 Board working...
 
 Started to fix comment
+ - Delete -- done
+ - Edit -- working on
+ 
+Fixing Sign up page when user entered invalid value
+ - working on
 
 #To do list
 
