@@ -112,7 +112,6 @@ public class ArticleController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/Article/Detail/" + id);
 
-		System.out.println("11");
 		Article updatedArticle = new Article();
 		updatedArticle.setId(article.getId());
 		updatedArticle.setTitle(article.getTitle());
@@ -121,9 +120,7 @@ public class ArticleController {
 		updatedArticle.setWriteTime(article.getWriteTime());
 		updatedArticle.setComments(article.getComments());
 
-		System.out.println("12");
 		articleService.updateArticle(updatedArticle);
-		System.out.println("13");
 
 		return mav;
 	}
