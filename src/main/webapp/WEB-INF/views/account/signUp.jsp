@@ -1,4 +1,5 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
 	
@@ -6,7 +7,7 @@
 			<div class="col-md-6">
 				<h4>Sign up</h4>
 				<hr />
-		      
+				
 				<form name="signUpForm" method="post" action="signUpProcess">
 			      	<div class="form-group">
 				        <label class="col-md-2 control-label">Email:</label>

@@ -1,6 +1,11 @@
+>Got some different idea for my projects..
+
+>I will keep work on this project later.(Jun 26 2017)
+
 # SpringProject_practice
 
 This is a practice project
+
 
 Account -- done
 
@@ -8,7 +13,9 @@ Article -- done
 
 Comment -- done
 
-Board working...
+Board -- done
+
+#Fixing and updating...
 
 Started to fix comment
  - Delete -- done
