@@ -1,7 +1,3 @@
->Got some different idea for my projects..
-
->I will keep work on this project later.(Jun 26 2017)
-
 # SpringProject_practice
 
 This is a practice project
@@ -16,6 +12,8 @@ Comment -- done
 Board -- done
 
 #Fixing and updating...
+
+Fixed minor bugs to prepare job interviews -- Jun 27
 
 Started to fix comment
  - Delete -- done

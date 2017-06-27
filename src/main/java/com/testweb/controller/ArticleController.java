@@ -111,13 +111,13 @@ public class ArticleController {
 		mav.setViewName("redirect:/Article/Detail/" + id);
 
 		Article thisArticle = articleService.findArticleById(article.getId());
-		thisArticle.updateArticle(article);
-		/*updatedArticle.setId(article.getId());
-		updatedArticle.setTitle(article.getTitle());
-		updatedArticle.setContent(article.getContent());
-		updatedArticle.setWriter((Account) session.getAttribute("currentAccountInfo"));
-		updatedArticle.setWriteTime(article.getWriteTime());
-		updatedArticle.setComments(article.getComments());*/
+		/*thisArticle.updateArticle(article);*/
+		thisArticle.setId(article.getId());
+		thisArticle.setTitle(article.getTitle());
+		thisArticle.setContent(article.getContent());
+		thisArticle.setWriter((Account) session.getAttribute("currentAccountInfo"));
+		thisArticle.setWriteTime(article.getWriteTime());
+		thisArticle.setComments(article.getComments());
 
 		articleService.updateArticle(thisArticle);
 

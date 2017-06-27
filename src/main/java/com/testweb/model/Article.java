@@ -53,10 +53,11 @@ public class Article {
 		this.comments = new ArrayList<Comment>();
 	}
 	public void updateArticle(Article art){
-		this.title = art.getTitle();
-		this.content = art.getContent();
-		this.writer = art.getWriter();
-		this.writeTime = art.getWriteTime();
+		// This function as a problem
+		this.setTitle(art.getTitle());
+		this.setContent(art.getContent());
+		this.setWriter(art.getWriter());
+		this.setWriteTime(art.getWriteTime());
 		this.comments = new ArrayList<Comment>();
 		comments.addAll(art.getComments());
 	}
