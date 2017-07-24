@@ -13,6 +13,9 @@
 					<div class="col-sm-6">
 						<input class="form-control" name="title" autofocus value="${article.title}" /><br />
 					</div>
+					<div class="col-sm-5">
+						Writer: ${article.writer.name}
+					</div>
 				</div>
 				<div class="col-sm-12">
 					<b>Content:</b>

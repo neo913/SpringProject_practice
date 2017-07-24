@@ -52,8 +52,9 @@ public class Article {
 		this.writeTime = new Date();
 		this.comments = new ArrayList<Comment>();
 	}
+
+	// This function as a problem
 	public void updateArticle(Article art){
-		// This function as a problem
 		this.setTitle(art.getTitle());
 		this.setContent(art.getContent());
 		this.setWriter(art.getWriter());

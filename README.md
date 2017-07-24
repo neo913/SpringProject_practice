@@ -3,14 +3,6 @@
 This is a practice project
 
 
-Account -- done
-
-Article -- done
-
-Comment -- done
-
-Board -- done
-
 #Fixing and updating...
 
 Fixed minor bugs to prepare job interviews -- Jun 27

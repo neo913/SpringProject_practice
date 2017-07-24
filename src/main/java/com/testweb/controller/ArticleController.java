@@ -105,18 +105,23 @@ public class ArticleController {
 	}
 
 	@RequestMapping(value = "/Article/Update/{id}/editArticle", method = RequestMethod.POST)
+	@ResponseBody // tmp
 	public ModelAndView articleUpdatePost(@PathVariable("id") Long id, Article article, 
 			HttpSession session, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/Article/Detail/" + id);
 
+		System.out.println(article.getTitle());
+		System.out.println(article.getWriter().getName());
+		System.out.println(article.getContent());
+		
 		Article thisArticle = articleService.findArticleById(article.getId());
 		/*thisArticle.updateArticle(article);*/
 		thisArticle.setId(article.getId());
 		thisArticle.setTitle(article.getTitle());
 		thisArticle.setContent(article.getContent());
 		thisArticle.setWriter((Account) session.getAttribute("currentAccountInfo"));
-		thisArticle.setWriteTime(article.getWriteTime());
+		//thisArticle.setWriteTime(article.getWriteTime());
 		thisArticle.setComments(article.getComments());
 
 		articleService.updateArticle(thisArticle);
