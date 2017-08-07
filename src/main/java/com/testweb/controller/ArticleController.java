@@ -111,10 +111,6 @@ public class ArticleController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/Article/Detail/" + id);
 
-		System.out.println(article.getTitle());
-		System.out.println(article.getWriter().getName());
-		System.out.println(article.getContent());
-		
 		Article thisArticle = articleService.findArticleById(article.getId());
 		/*thisArticle.updateArticle(article);*/
 		thisArticle.setId(article.getId());

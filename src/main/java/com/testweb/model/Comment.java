@@ -44,10 +44,10 @@ public class Comment {
 	}
 	
 	public void updateComment(Comment com){
-		this.article = com.getArticle();
-		this.writer = com.getWriter();
-		this.content = com.getContent();
-		this.writeTime = com.getWriteTime();
+		this.setArticle(com.getArticle());
+		this.setWriter(com.getWriter());
+		this.setContent(com.getContent());
+		this.setWriteTime(com.getWriteTime());
 	}
 
 	public Article getArticle() {

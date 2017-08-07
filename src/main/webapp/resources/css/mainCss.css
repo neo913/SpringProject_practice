@@ -93,3 +93,8 @@ th, td{
 	cursor: pointer;
 	text-decoration:none;
 }
+.textBtn{
+	background:none;
+	border:0 none;
+	cursor:pointer;
+}

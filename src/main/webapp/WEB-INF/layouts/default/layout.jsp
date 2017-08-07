@@ -2,6 +2,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,9 +15,6 @@
 <body>
 	<div class="main">
 		<tiles:insertAttribute name="header" />
-		<script type="text/javascript">
-			var message = ${msg};
-		</script>
 		<div>
 			<tiles:insertAttribute name="blank" />
 			<tiles:insertAttribute name="body" />

@@ -29,29 +29,12 @@ public class CommentController {
 		return "redirect:/Article/Detail/"+ artId;
 	}
 	
-	@RequestMapping(value="/Comment/Update/{id}", method=RequestMethod.GET)
-	public ModelAndView commentUpdateGet(@PathVariable("id") Long id, Comment comment,
-			HttpSession session, HttpServletRequest request) {
-	
-		ModelAndView mav = new ModelAndView("/Article/detail_com_update");
-		
-		Comment thisComment = commentService.findCommentById(id);
-		
-		if( ((Account)session.getAttribute("currentAccountInfo")).getId() == thisComment.getWriter().getId() ){
-			mav.addObject("thisComment", thisComment);
-		}else{
-			mav.addObject("msg", "You can only edit your comments");
-			mav.setViewName("redirect:/Article/Detail/"+thisComment.getArticle().getId());
-		}
-		return mav;
-	}
-	
-	@RequestMapping(value="/Comment/Update/{id}/updateComment", method=RequestMethod.POST)
+	@RequestMapping(value="/Comment/Update/{id}", method=RequestMethod.POST)
 	public ModelAndView commentUpdatePost(@PathVariable("id") Long id, Comment comment,
 			HttpSession session, HttpServletRequest request) {
 		
 		Comment thisComment = commentService.findCommentById(id);
-		thisComment.updateComment(comment);
+		thisComment.setContent(comment.getContent());
 		ModelAndView mav = new ModelAndView("redirect:/Article/Detail/"+thisComment.getArticle().getId());
 		
 		commentService.updateComment(thisComment);
