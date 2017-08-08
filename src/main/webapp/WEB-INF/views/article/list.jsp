@@ -10,7 +10,8 @@
 <h2>Social Board</h2>
 <hr />
 <div id="main" class="container">
-<table class="table artTable">
+<div class="artTable">
+<table class="table">
 	<tr style="text-align:center;">
 		<th class="col-md-1 odd">ID</th>
 		<th class="col-md-8">Title</th>
@@ -18,7 +19,7 @@
 		<th class="col-md-2">Time</th>
 	</tr>
 	
-	<c:forEach items="${articles}" var="article">
+	<c:forEach items="${articles.content}" var="article">
 		
 			<tr>
 				<td class="col-md-1 odd">${article.id}</td>
@@ -28,10 +29,37 @@
 					<fmt:formatDate type = "both" dateStyle = "medium" timeStyle = "medium" value = "${article.writeTime}" />
 				</td>
 			</tr>
-		
 	</c:forEach>
 </table>
-<a href="/Article/Create"><button class="btn btn-info">New Post</button></a>
+</div>
+<div class="row">
+	<div class="col-md-offset-2 col-md-8 pageNumCont" >
+		<div class="pageNum">
+			<c:if test="${articles.number != 0}">
+				<a href="/Article/?page.page=${articles.number}">Prev</a>
+			</c:if>
+		
+		
+			<c:forEach begin="1" end="${articles.totalPages}" varStatus="page">
+				<c:choose>
+					<c:when test="${articles.number+1 == page.count}">
+						<a class="pActive" href="/Article/?page.page=${page.count}">${page.count}</a>
+					</c:when>
+					<c:otherwise>
+						<a href="/Article/?page.page=${page.count}">${page.count}</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		
+			<c:if test="${articles.number != (articles.totalPages-1)}">
+				<a href="/Article/?page.page=${articles.number+2}">Next</a>
+			</c:if>
+		</div>
+	</div>
+</div>
+<div>
+	<a href="/Article/Create"><button class="btn btn-info">New Post</button></a>
+</div>
 </div>
 
 

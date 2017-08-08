@@ -51,6 +51,7 @@ body{
 }
 .artTable{
 	text-align: center;
+	min-height: 222px;
 }
 th, td{
 	text-align: center;
@@ -97,4 +98,31 @@ th, td{
 	background:none;
 	border:0 none;
 	cursor:pointer;
+}
+
+/* Pagination CSS source */
+/* https://www.w3schools.com/css/css3_pagination.asp */
+.pageNumCont{
+	text-align:center;
+}
+.pageNum {
+    display: inline-block;
+    margin: none;
+}
+
+.pageNum a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    
+}
+
+.pActive {
+    background-color: #87ceeb;
+    color: white;
+}
+
+.pageNum a:hover:not(.active) {
+	background-color: #ddd;
 }

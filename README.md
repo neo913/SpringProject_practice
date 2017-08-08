@@ -7,19 +7,32 @@ This is a practice project
 
 Board task -- all done (Account, Article, Comment)
 
+Pageable board -- done
+
 Fixing Sign up page when user entered invalid value
  - working on
 
-#To do list
-
+#Done list
+Sign up / in
+Board CRUD (Account, Article, Comment)
 Pageable board
 
-Fix the comment to be able to edit/delete -- done
+#To do list
 
-Account role (On progress)
+1. Fix the comment to be able to edit/delete -- (done)
 
-Admin page and function
+2. Pageable board -- (done) 
 
-Lecture contents
+3. Sign up page - on progress
 
-Event contents (Admin)
+4. Account role (On progress)
+
+5. Admin page and function
+
+6. Event contents (Admin)
+
+7. Lecture contents (for managers)
+
+# Bug found
+
+Article content can be null? or not? (at least message?)

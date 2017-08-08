@@ -2,16 +2,23 @@ package com.testweb.service;
 
 import java.util.List;
 
-import com.testweb.model.Account;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.testweb.model.Article;
 
 public interface ArticleService {
 
+	Long countArticles();
+	
+	Long countPages();
+	
 	Article findArticleById(Long id);
 	
 	List<Article> findAllArticles();
 	
-	/*void createArticle(String title, String content, Account writer);*/
+	Page<Article> findSomeArticles(Pageable page);
+	
 	void createArticle(Article article);
 	
 	void updateArticle(Article article);

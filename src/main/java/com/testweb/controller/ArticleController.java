@@ -8,6 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.PageableDefaults;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +31,7 @@ import com.testweb.model.Comment;
 import com.testweb.service.AccountService;
 import com.testweb.service.ArticleService;
 import com.testweb.service.CommentService;
+import com.testweb.util.PageMaker;
 
 @Controller
 @SessionAttributes("Account, Article")
@@ -35,10 +44,12 @@ public class ArticleController {
 	private CommentService commentService;
 
 	@RequestMapping("/Article")
-	public String articleList(Model model) {
-		List<Article> articles = articleService.findAllArticles();
-		model.addAttribute("articles", articles);
-
+	public String articleList(Model model, 
+			@PageableDefaults(value=5, pageNumber=0, sort={"writeTime"}, sortDir=Direction.DESC) Pageable pageable) {
+		
+		Page<Article> pages = articleService.findSomeArticles(pageable);
+		model.addAttribute("articles", pages);
+		
 		return "article/list";
 	}
 
@@ -58,7 +69,6 @@ public class ArticleController {
 		if (article.getTitle().length() > 0 && article.getContent().length() > 0
 				&& article.getWriter().getName() != null) {
 			Article newArticle = article;
-			/*articleService.createArticle(article.getTitle(), article.getContent(), article.getWriter());*/
 			articleService.createArticle(newArticle);
 			mav.setViewName("redirect:/Article/Detail/"+newArticle.getId());
 		} else {
